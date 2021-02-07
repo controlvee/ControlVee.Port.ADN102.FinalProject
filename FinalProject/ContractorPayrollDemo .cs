@@ -2,32 +2,43 @@
 
 namespace FinalProject
 {
-    class ContractorPayrollDemo 
+    class ContractorPayrollDemo
     {
         static void Main(string[] args)
         {
+            EmployeeInfoHelper helper = new EmployeeInfoHelper();
 
+            try
+            {
+                helper.DisplayMenu();
 
+                string keyPressed = Console.ReadLine();
 
+                if (!helper.MenuItemSelected)
+                {
+                    helper.GetMenuOption(keyPressed);
+                }
+               
 
-
-
-
-            //for (int i = 0; i < 10; i++)
-            //{
                 
-                
-            //    try
-            //    {
-            //        string state = Console.ReadLine();
 
-                    
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e.Message);
-            //    }
-            //}
+
+
+
+
+
+
+
+
+                //string state = Console.ReadLine();
+
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

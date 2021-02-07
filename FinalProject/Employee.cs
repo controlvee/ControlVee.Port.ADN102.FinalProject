@@ -9,6 +9,7 @@ namespace FinalProject
     /// </summary>
     public class Employee
     {
+        bool isInSystem;
         int employeeIdNumber;
         int hoursWorked;
         double ratePerHour;
@@ -74,6 +75,18 @@ namespace FinalProject
 	#endregion
             };
 
+        public bool IsInSystem
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                isInSystem = value;
+            }
+        }
+
         public int EmployeeIdNumber
         {
             get
@@ -82,6 +95,7 @@ namespace FinalProject
             }
             set
             {
+                isInSystem = true;
                 employeeIdNumber = value;
             }
         }
@@ -108,6 +122,11 @@ namespace FinalProject
             {
                 paycheck = value;
             }
+        }
+
+        public Employee()
+        {
+                
         }
 
         public Employee(string state)
