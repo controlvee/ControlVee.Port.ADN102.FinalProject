@@ -14,9 +14,7 @@ namespace FinalProject
         int hoursWorked;
         double ratePerHour;
         string state;
-        double paycheck;
-        public readonly int StateTax;
-        Dictionary<string, double> taxesByState = 
+        Dictionary<string, double>  taxesByState =
             new Dictionary<string, double>
             {
                #region States and Tax
@@ -74,6 +72,9 @@ namespace FinalProject
                 { "WY", 0 } 
 	#endregion
             };
+        double paycheck;
+        public readonly int StateTax;
+        
 
         public bool IsInSystem
         {
@@ -108,7 +109,14 @@ namespace FinalProject
             }
             set
             {
-                state = value;
+                if (!(taxesByState.ContainsKey(state.ToUpper())))
+                {
+                    throw new Exception("Please enter valid State abbreviation: ex. \"TX\"");
+                }
+                else
+                {
+                    state = value;
+                }
             }
         }
 
@@ -128,37 +136,30 @@ namespace FinalProject
         {
             get
             {
-                return paycheck;
+                return paycheck; 
             }
             set
             {
+                
                 paycheck = value;
             }
         }
 
         public Employee()
         {
-            this.employeeIdNumber = 00000;    
+                
         }
 
-        public Employee(string state)
+        public Employee(string state, int hoursWorked)
         {
-            if (!(taxesByState.ContainsKey(state)))
-            {
-                throw new Exception("Please enter valid State abbreviation: ex. \"TX\"");
-            }
 
             this.state = state;
+            State = state;
+            this.hoursWorked = hoursWorked;
             ratePerHour = 35;
 
-            CalculatePaycheck();
-        }
-
-        private void CalculatePaycheck()
-        {
             double preTaxPayCheck = hoursWorked * ratePerHour;
-            paycheck = preTaxPayCheck - 
-                (preTaxPayCheck * (StateTax * 0.1d));
+            paycheck = (preTaxPayCheck - (preTaxPayCheck * StateTax * 0.1d));
         }
 
         public override string ToString()

@@ -95,10 +95,18 @@ namespace FinalProject
                 {
                     for (int i = 0; i < employees.Length; i++)
                     {
-                        employees[emptySlotIndex] = new Employee();
-                        employees[emptySlotIndex].EmployeeIdNumber = UInt64.Parse(ein);
-                        employees[emptySlotIndex].HoursWorked = Int32.Parse(hrsWorked);
-                        employees[emptySlotIndex].State = state;
+                        try
+                        {
+                            employees[emptySlotIndex] = new Employee(state, Int32.Parse(hrsWorked));
+                            employees[emptySlotIndex].EmployeeIdNumber = UInt64.Parse(ein);
+                        }
+                        catch(Exception e)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(e.Message);
+                            Console.ReadKey();
+                        }
+
                         hasEmployees = true;
                         foundEmpty = true;
 
@@ -139,17 +147,20 @@ namespace FinalProject
                 Console.WriteLine("\r\nNo employee records.\r\n\r\n" +
                                     "\r\nIf you would like to (A)dd please return to the main menu.\r\n");
 
-                
+
             }
             else
             {
-                // Add header.
-                Console.WriteLine($"{"EIN:", -25}{"State Tax:",-25}{"Hrs Worked:",-25}{"Paycheck:",-25}");
+                Console.WriteLine($"\r\n");
+                Console.WriteLine($"{"EIN:",-25}{"State Tax:",-25}{"Hrs Worked:",-25}{"Paycheck:",-25}\r\n");
+                
                 for (int i = 0; i < employees.Length; i++)
                 {
-                    Console.WriteLine($"{i}) {employees[i].EmployeeIdNumber, - 25} {employees[i].HoursWorked, -25} {employees[i].Paycheck, -25} {employees[i].StateTax, -25} ");
+                    Console.WriteLine($"\r\n{i}) {employees[i].EmployeeIdNumber, - 25}" +
+                                                    $" {employees[i].StateTax, -25} " +
+                                                    $"{employees[i].HoursWorked, -25} " +
+                                                    $"{employees[i].Paycheck, -25} ");
                 }
-               
             }
 
             Console.ReadKey();

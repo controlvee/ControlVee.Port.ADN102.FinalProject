@@ -8,18 +8,19 @@ namespace FinalProject
         {
             EmployeeInfoHelper helper = new EmployeeInfoHelper();
 
-            try
+
+            helper.DisplayMenu();
+            while (helper.GetMenuOption())
             {
-                helper.DisplayMenu();
-                while (helper.GetMenuOption())
+                try
                 {
                     Console.Clear();
                     helper.DisplayMenu();
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
     }
