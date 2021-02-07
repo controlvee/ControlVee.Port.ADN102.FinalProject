@@ -11,29 +11,11 @@ namespace FinalProject
             try
             {
                 helper.DisplayMenu();
-
-                string keyPressed = Console.ReadLine();
-
-                if (!helper.MenuItemSelected)
+                while (helper.GetMenuOption())
                 {
-                    helper.GetMenuOption(keyPressed);
+                    Console.Clear();
+                    helper.DisplayMenu();
                 }
-               
-
-                
-
-
-
-
-
-
-
-
-
-                //string state = Console.ReadLine();
-
-
-
             }
             catch (Exception e)
             {

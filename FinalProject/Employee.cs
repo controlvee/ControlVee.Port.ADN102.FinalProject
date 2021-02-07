@@ -10,7 +10,7 @@ namespace FinalProject
     public class Employee
     {
         bool isInSystem;
-        int employeeIdNumber;
+        ulong employeeIdNumber;
         int hoursWorked;
         double ratePerHour;
         string state;
@@ -87,7 +87,7 @@ namespace FinalProject
             }
         }
 
-        public int EmployeeIdNumber
+        public ulong EmployeeIdNumber
         {
             get
             {
@@ -97,6 +97,18 @@ namespace FinalProject
             {
                 isInSystem = true;
                 employeeIdNumber = value;
+            }
+        }
+
+        public string State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state = value;
             }
         }
 
@@ -126,7 +138,7 @@ namespace FinalProject
 
         public Employee()
         {
-                
+            this.employeeIdNumber = 00000;    
         }
 
         public Employee(string state)
