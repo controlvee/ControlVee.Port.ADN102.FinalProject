@@ -23,11 +23,10 @@ namespace FinalProject
         public void DisplayMenu()
         {
             Console.Write(
-                "(A)dd\t" +
-                "(Li)st Taxes Descending\t" +
-                "(L)ist Normal\t" +
-                "(S)earch\t" +
-                "(E)xit\t");
+                $"{"(A)dd", -10}" +
+                $"{"(Li)st Paycheck High to Low", -30}" +
+                $"{"(L)ist Normal", -15}" +
+                $"{"(E)xit", -10}");
         }
 
         public bool GetMenuOption()
@@ -73,10 +72,8 @@ namespace FinalProject
 
             Console.WriteLine("Please enter Employee Identificaiton Number (EIN): ");
             string ein = Console.ReadLine();
-         
             Console.WriteLine("Please enter hours worked: ");
             string hrsWorked = Console.ReadLine();
-            
             Console.WriteLine("Please enter state (ex. TX) where employee worked: ");
             string state = Console.ReadLine();
 
@@ -84,7 +81,10 @@ namespace FinalProject
 
             if (Console.ReadLine().ToUpper() == "Y")
             {
-                CheckEINForLengthAndDups(ein);
+                // If empty slot is more than 0 then we want to check for dups.  If its 
+                // not then we need to check the employee number for length anyways.
+                if (!CheckEINForLengthAndDups(ein))
+                    return;
 
                 // Get number of employees to use to index.
                 var hasEmployees = employees.All(e => e.EmployeeIdNumber > 0);
@@ -124,17 +124,29 @@ namespace FinalProject
 
         private bool CheckEINForLengthAndDups(string ein)
         {
-            // Check for dups.
+            
             bool isGoodLength = true;
+            
+            // Check for length.
             if (ein.Length > 9)
             {
+                isGoodLength = false;
                 Console.WriteLine("EIN must be 9 characters or less in length.");
                 Console.ReadKey();
             }
-            //if(Check for dups.)
-            //{ 
-            //}
 
+            // Don't compare if first one in array.
+            if (emptySlotIndex > 0)
+            {
+                // Check for dups.
+                if (employees.Any(x => x.EmployeeIdNumber.ToString() == ein))
+                {
+                    isGoodLength = false;
+                    Console.WriteLine($"Employee with EIN: {ein} already exists.");
+                    Console.ReadKey();
+                }
+            }
+       
             return isGoodLength;
         }
 
@@ -146,14 +158,12 @@ namespace FinalProject
 
                 Console.WriteLine("\r\nNo employee records.\r\n\r\n" +
                                     "\r\nIf you would like to (A)dd please return to the main menu.\r\n");
-
-
             }
             else
             {
                 if (descendingList)
                 {
-                    employees = employees.OrderByDescending(e => e.StateTax).ToArray();
+                    employees = employees.OrderByDescending(e => e.Paycheck).ToArray();
                 }
                 else
                 {

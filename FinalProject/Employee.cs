@@ -140,6 +140,10 @@ namespace FinalProject
         {
           
             this.state = state.ToUpper();
+
+            // Check if valid state. Is this okay?
+            State = this.State;
+
             this.hoursWorked = hoursWorked;
             ratePerHour = 35.00;
 
