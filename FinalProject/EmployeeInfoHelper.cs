@@ -40,13 +40,13 @@ namespace FinalProject
                     AddEmployee();
                     break;
                 case "L":
-                    ListEmployees();
+                    ListEmployees(false);
                     break;
                 case "E":
                     ExitConsole();
                     break;
                 case "LI":
-                    ListEmployeesByAmountAndTaxes();
+                    ListEmployees(true);
                     break;
                 default:
                     break;
@@ -138,7 +138,7 @@ namespace FinalProject
             return isGoodLength;
         }
 
-        private void ListEmployees()
+        private void ListEmployees(bool descendingList)
         {
             if (!HasRecords)
             {
@@ -152,36 +152,20 @@ namespace FinalProject
             else
             {
                 Console.WriteLine($"\r\n");
-                Console.WriteLine($"{"EIN:",-25}{"State Tax:",-25}{"Hrs Worked:",-25}{"Paycheck:",-25}\r\n");
+                Console.WriteLine($"{"EIN:",-25}{"State:",-25}{"State Tax:",-25}{"Hrs Worked:",-25}{"Paycheck:",-25}\r\n");
                 
                 for (int i = 0; i < employees.Length; i++)
                 {
                     Console.WriteLine($"\r\n{i}) {employees[i].EmployeeIdNumber, - 25}" +
-                                                    $" {employees[i].StateTax, -25} " +
+                                                    $" {employees[i].State, -25} " +
+                                                    $" {employees[i].StateTax, -25:p} " +
                                                     $"{employees[i].HoursWorked, -25} " +
-                                                    $"{employees[i].Paycheck, -25} ");
+                                                    $"{employees[i].Paycheck, -25:n} ");
                 }
-            }
 
-            Console.ReadKey();
-        }
-        private void ListEmployeesByAmountAndTaxes()
-        {
-            if (!HasRecords)
-            {
-                Console.Clear();
-
-                Console.WriteLine("\r\nNo employee records.\r\n\r\n" +
-                                    "\r\nIf you would like to (A)dd please return to the main menu.\r\n");
-            }
-            else
-            {
-                employees.OrderByDescending(e => e.Paycheck);
-
-                // Add Header somehow.
-                for (int i = 0; i < employees.Length; i++)
+                if(descendingList)
                 {
-                    Console.WriteLine($"{i}) {employees[i].EmployeeIdNumber} {employees[i].HoursWorked} {employees[i].Paycheck} {employees[i].StateTax} ");
+                    employees.OrderByDescending(e => e.Paycheck);
                 }
             }
 

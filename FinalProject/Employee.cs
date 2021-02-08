@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FinalProject
@@ -20,9 +21,9 @@ namespace FinalProject
                #region States and Tax
                 // State tax chart - https://taxfoundation.org/state-and-local-sales-tax-rates-2020/
 
-		        { "AL", 4.00 },
+		        { "AL", .04 },
                 { "AK", 0.00 },
-                { "AZ", 5.60 },
+                { "AZ", .056 },
                 { "AR", 6.50 },
                 { "CA", 7.25 },
                 { "CO", 2.90 },
@@ -73,8 +74,7 @@ namespace FinalProject
 	#endregion
             };
         double paycheck;
-        public readonly int StateTax;
-        
+        public readonly double StateTax;
 
         public bool IsInSystem
         {
@@ -152,14 +152,22 @@ namespace FinalProject
 
         public Employee(string state, int hoursWorked)
         {
-
-            this.state = state;
-            State = state;
+          
+            this.state = state.ToUpper();
             this.hoursWorked = hoursWorked;
-            ratePerHour = 35;
+            ratePerHour = 35.00;
 
+            foreach(var t in taxesByState)
+            {
+                if(t.Key == this.state)
+                {
+                    StateTax = t.Value;
+                    break;
+                }
+            }
+                        
             double preTaxPayCheck = hoursWorked * ratePerHour;
-            paycheck = (preTaxPayCheck - (preTaxPayCheck * StateTax * 0.1d));
+            paycheck = (preTaxPayCheck - (preTaxPayCheck * StateTax));
         }
 
         public override string ToString()
