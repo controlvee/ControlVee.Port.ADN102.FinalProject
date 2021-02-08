@@ -124,7 +124,6 @@ namespace FinalProject
 
         private bool CheckEINForLengthAndDups(string ein)
         {
-            
             bool isGoodLength = true;
             
             // Check for length.
@@ -181,8 +180,6 @@ namespace FinalProject
                                                     $"{employees[i].HoursWorked, -25} " +
                                                     $"{employees[i].Paycheck, -25:n} ");
                 }
-
-                
             }
 
             Console.ReadKey();

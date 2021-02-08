@@ -8,7 +8,6 @@ namespace FinalProject
         {
             EmployeeInfoHelper helper = new EmployeeInfoHelper();
 
-
             helper.DisplayMenu();
             while (helper.GetMenuOption())
             {
