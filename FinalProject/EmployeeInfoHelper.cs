@@ -63,9 +63,9 @@ namespace FinalProject
         public void AddEmployee()
         {
             // Check if there are already 10 employess in the system.
-            if (emptySlotIndex > 9)
+            if (emptySlotIndex >= 10)
             {
-                Console.WriteLine("Program holds 10 users maximum - please return to main menu to (D)elete.");
+                Console.WriteLine("Program holds 10 users maximum - please (E)xit and restart.");
                 Console.ReadKey();
                 return;
             }

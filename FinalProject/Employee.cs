@@ -28,7 +28,7 @@ namespace FinalProject
                 { "CO", .02900 },
                 { "CT", .06350 },
                 { "DE", .00000 },
-                { "FL", .00600 },
+                { "FL", .06000 },
                 { "GA", .00400 },
                 { "HI", .00400 },
                 { "ID", .00600 },
@@ -62,7 +62,7 @@ namespace FinalProject
                 { "SC", .06000 },
                 { "SD", .04500 },
                 { "TN", .07000 },
-                { "TX", .00000 },
+                { "TX", .06250 },
                 { "UT", .06100 },
                 { "VT", .06000 },
                 { "VA", .05300 },
@@ -138,7 +138,6 @@ namespace FinalProject
 
         public Employee(string state, int hoursWorked)
         {
-          
             this.state = state.ToUpper();
 
             // Check if valid state during contruction. 
@@ -161,16 +160,6 @@ namespace FinalProject
                         
             double preTaxPayCheck = hoursWorked * ratePerHour;
             paycheck = (preTaxPayCheck - (preTaxPayCheck * StateTax));
-        }
-
-        public override string ToString()
-        {
-            return $"Employee ID: " +
-                $"{EmployeeIdNumber}\r\n" +
-                $"Paycheck Amount: " +
-                $"{paycheck}\r\n" +
-                $"Total State Tax: " +
-                $"{StateTax}\r\n";
         }
     }
 }
