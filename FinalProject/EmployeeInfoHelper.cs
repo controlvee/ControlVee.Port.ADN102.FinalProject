@@ -151,6 +151,15 @@ namespace FinalProject
             }
             else
             {
+                if (descendingList)
+                {
+                    employees = employees.OrderByDescending(e => e.StateTax).ToArray();
+                }
+                else
+                {
+                    employees = employees.OrderByDescending(e => e.State).ToArray();
+                }
+
                 Console.WriteLine($"\r\n");
                 Console.WriteLine($"{"EIN:",-25}{"State:",-25}{"State Tax:",-25}{"Hrs Worked:",-25}{"Paycheck:",-25}\r\n");
                 
@@ -163,10 +172,7 @@ namespace FinalProject
                                                     $"{employees[i].Paycheck, -25:n} ");
                 }
 
-                if(descendingList)
-                {
-                    employees.OrderByDescending(e => e.Paycheck);
-                }
+                
             }
 
             Console.ReadKey();

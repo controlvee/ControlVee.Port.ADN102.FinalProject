@@ -10,7 +10,6 @@ namespace FinalProject
     /// </summary>
     public class Employee
     {
-        bool isInSystem;
         ulong employeeIdNumber;
         int hoursWorked;
         double ratePerHour;
@@ -25,7 +24,7 @@ namespace FinalProject
                 { "AK", 0.00 },
                 { "AZ", .056 },
                 { "AR", 6.50 },
-                { "CA", 7.25 },
+                { "CA", .0725 },
                 { "CO", 2.90 },
                 { "CT", 6.35 },
                 { "DE", 0 },
@@ -76,18 +75,6 @@ namespace FinalProject
         double paycheck;
         public readonly double StateTax;
 
-        public bool IsInSystem
-        {
-            get
-            {
-                return false;
-            }
-            set
-            {
-                isInSystem = value;
-            }
-        }
-
         public ulong EmployeeIdNumber
         {
             get
@@ -96,7 +83,6 @@ namespace FinalProject
             }
             set
             {
-                isInSystem = true;
                 employeeIdNumber = value;
             }
         }
